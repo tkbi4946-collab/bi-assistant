@@ -1,4 +1,4 @@
-const API_URL = 'https://sim.ai/api/workflows/c63a2d64-d6b1-4b40-9057-f350d5b2b075/execute';
+const API_URL = 'https://www.sim.ai/api/workflows/c63a2d64-d6b1-4b40-9057-f350d5b2b075/run';
 const API_KEY = 'sk-sim--9bVDYAWK8w_bOTLguhI3VZ0qsRUGa-n';
 exports.handler = async (event) => {
     const headers = {
@@ -18,28 +18,12 @@ exports.handler = async (event) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'x-api-key': API_KEY
+                'Authorization': `Bearer ${API_KEY}`
             },
             body: event.body
         });
-        const text = await response.text();
-        // Log for debugging
-        console.log('API Response Status:', response.status);
-        console.log('API Response:', text.substring(0, 500));
-        // Try to parse as JSON, return error if HTML
-        try {
-            const data = JSON.parse(text);
-            return { statusCode: 200, headers, body: JSON.stringify(data) };
-        } catch (parseError) {
-            return {
-                statusCode: 500,
-                headers,
-                body: JSON.stringify({
-                    error: 'Invalid response from API',
-                    details: text.substring(0, 200)
-                })
-            };
-        }
+        const data = await response.json();
+        return { statusCode: 200, headers, body: JSON.stringify(data) };
     } catch (error) {
         return { statusCode: 500, headers, body: JSON.stringify({ error: error.message }) };
     }
