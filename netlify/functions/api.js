@@ -1,5 +1,5 @@
-const API_URL = 'https://www.sim.ai/api/workflows/c63a2d64-d6b1-4b40-9057-f350d5b2b075/run';
-const API_KEY = 'sk-sim--9bVDYAWK8w_bOTLguhI3VZ0qsRUGa-n';
+const API_URL = 'https://api.sim.so/v1/workflows/c63a2d64-d6b1-4b40-9057-f350d5b2b075/run';
+const API_KEY = 'sk-sim-Gy3SlBZ8oM6Y3au99qVAeLZfdelO_NeL';
 exports.handler = async (event) => {
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -18,7 +18,7 @@ exports.handler = async (event) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEY}`
+                'x-api-key': API_KEY
             },
             body: event.body
         });
