@@ -1,4 +1,4 @@
-const API_URL = 'https://api.sim.so/v1/workflows/c63a2d64-d6b1-4b40-9057-f350d5b2b075/run';
+const API_URL = 'https://simstudio.ai/api/workflows/c63a2d64-d6b1-4b40-9057-f350d5b2b075/execute';
 const API_KEY = 'sk-sim-Gy3SlBZ8oM6Y3au99qVAeLZfdelO_NeL';
 exports.handler = async (event) => {
     const headers = {
